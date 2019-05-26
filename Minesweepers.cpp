@@ -13,16 +13,16 @@
 
 void create_mine();
 int check(int x, int y);		//kiem tra so mines xung quanh o (x,y)
-void taoBaiMin();				//tao ra bai mines
+void taoBaiMin();			//tao ra bai mines
 void game();
-void draw();					//ve ban co
+void draw();				//ve ban co
 void create_Borders();			//tao bien cho ma tran
-void init();					//khoi tao ban co, chon level, tao bai mines
-void level();					//chon so luong mines
+void init();				//khoi tao ban co, chon level, tao bai mines
+void level();				//chon so luong mines
 void loang(int ai, int aj);
 void enter(int ai, int aj);		//xu ly sau khi nhan ENTER
-void control();					//dieu khien cua player
-void xuat();					//xuat tat ca cac gia tri bai mines ra man hinh, replay
+void control();				//dieu khien cua player
+void xuat();				//xuat tat ca cac gia tri bai mines ra man hinh, replay
 void gotoXY(int x, int y);
 void textColor (int color);
 void resizeConsole(int width, int height);
@@ -44,11 +44,11 @@ void game(){
 void init(){
 	x=5;y=2;
 	/*Khoi tao mang trong*/
-	level();				//chon level
-	draw();					//ve ban co
+	level();			//chon level
+	draw();				//ve ban co
 	create_Borders();		//tao bien cho bai mines
 	avail=SIZE*SIZE+1;		//khoi tao avail cho biet chua open o nao
-	control();				//xac dinh vi tri o 1st duoc open
+	control();			//xac dinh vi tri o 1st duoc open
 	create_mine();			//tao ra vi tri mines
 	taoBaiMin();			//tao ma tran bai mines
 	avail=SIZE*SIZE;		//khoi tao lai avail
@@ -89,7 +89,7 @@ void level(){
 }
 void enter(int ai, int aj){
 	if (avail<SIZE*SIZE){			//da open it nhat 1 o
-		if (A[ai][aj]==-1)	xuat();	//di vao o chua mine
+		if (A[ai][aj]==-1) xuat();	//di vao o chua mine
 		else if (A[ai][aj]==0)		//di vao vung trong
 			loang(ai,aj);
 		else if (A[ai][aj]!=-2){	//di vao cac o mang gia tri >0
@@ -99,7 +99,7 @@ void enter(int ai, int aj){
 	{	avail=0;	}	//dat avail=0 de ket thuc control
 }
 void control(){
-	while (avail){					//khi van con o chua open
+	while (avail){			//khi van con o chua open
 		gotoXY(x,y);	
 		int ai=(y-TOP-1)/2+1,	aj=(x-LEFT-2)/4+1;
 		if (kbhit()){
@@ -137,14 +137,14 @@ void loang(int ai, int aj){
 			gotoXY(4*col+LEFT-2,2*row+TOP-1);
 			if (A[row][col]==0){
 				textColor(0);	printf("%c",219);
-				A[row][col]=-2;			//flag: danh dau o da duyet
-				avail--;				//opened them 1 o
+				A[row][col]=-2;		//flag: danh dau o da duyet
+				avail--;		//opened them 1 o
 				loang(row,col);
 			}
 			else if (A[row][col]>0){
 				textColor(A[row][col]);	printf("%d",A[row][col]);
-				A[row][col]=-2;			//flag: danh dau o da duyet
-				avail--;				//opened them 1 o
+				A[row][col]=-2;		//flag: danh dau o da duyet
+				avail--;		//opened them 1 o
 			}
 		}
 }
@@ -166,7 +166,7 @@ void create_mine(){
 		int i=rand()%(SIZE)+1, j=rand()%(SIZE)+1;
 		if (A[i][j]>=0)
 			if (!(i==ai && j==aj)){
-				A[i][j]=-1;		//Gia tri -1 cho biet vi tri do co Mi`n
+				A[i][j]=-1;	//Gia tri -1 cho biet vi tri do co Mi`n
 				count++;
 			}
 	} 
@@ -181,7 +181,7 @@ int check(int x, int y){	//dem so luong Mi`n xung quanh
 void taoBaiMin(){	//tao bai Mi`n
 	for (int i=0;i<SIZE+2;i++)
 		for (int j=0;j<SIZE+2;j++)
-			if (A[i][j]!=-1&&A[i][j]!=MIN_VALUE)				//tranh vi tri dat Mi`n
+			if (A[i][j]!=-1&&A[i][j]!=MIN_VALUE)	//tranh vi tri dat Mi`n
 				A[i][j]=check(i,j);
 }
 void xuat(){
