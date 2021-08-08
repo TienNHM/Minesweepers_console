@@ -30,7 +30,7 @@ int A[bSIZE][bSIZE], value;
 unsigned int x, y, avail;
 
 int main(){
-	resizeConsole(1000,780);
+	resizeConsole(900,750);
 	game();
 	return 0;
 }
